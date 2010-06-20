@@ -131,7 +131,7 @@ Kang-min Liu E<lt>gugod@gugod.orgE<gt>
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright (c) 2009, Kang-min Liu C<< <gugod@gugod.org> >>.
+Copyright (c) 2010, Kang-min Liu C<< <gugod@gugod.org> >>.
 
 This is free software, licensed under:
 
