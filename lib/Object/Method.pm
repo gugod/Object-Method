@@ -80,6 +80,49 @@ a sub-routine or code-ref. After calling that C<method> method on
 object C<$o>, a new method C<foo> will be attached to C<$o> and can be
 invoked only on C<$o>.
 
+The second way is to use it on all objects through
+C<UNIVERSAL::Object::Method> like this:
+
+    use UNIVERSAL::Object::Method;
+    use SomeClass;
+
+    my $o = SomeClass->new;
+
+    $o->method("foo" => sub { ... });
+
+This is an overwhelming way due to the use of L<UNIVERSAL> namespace. If
+you are not familiar with it, read the linked documentation.
+
+Please notice that calling the C<method> method multiple times
+obviously override previous definition and there is no way to undo
+this for now.
+
+=head1 BEHIND THE SCENE
+
+To implement such mechanism, the object on which the C<method> method is
+invoked are re-blessed into its' own, dynamically created, namespace. You
+may exam them with C<ref>:
+
+    my $x = My::Awesome::Class->new;
+    $x->method("kiss", sub { say ... });
+
+    say ref($x);
+    # => My::Awesome::Class#<1>
+
+    say "$x";
+    # => My::Awesome::Class#<1>=HASH(0x100826a30)
+
+Those dynamically created classes are properly setup to be inherited
+from the original classes with C<@ISA> variable. That effects the
+return value of C<ref> but not C<isa>.
+
+The number in the last part of the namespace is a serial that gets
+incremented when a new object is encountered. If numerous objects are
+encountered it might consume a very big part of symble table.  The
+mechanism to reap unused classnames are not implemented at this
+moment.
+
+
 =head1 AUTHOR
 
 Kang-min Liu E<lt>gugod@gugod.orgE<gt>
