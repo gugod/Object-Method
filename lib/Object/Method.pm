@@ -41,15 +41,44 @@ __END__
 
 =head1 NAME
 
-Object::Method -
+Object::Method - attach method to objects instead of classes.
 
 =head1 SYNOPSIS
 
+  package Stuff;
   use Object::Method;
+
+  package main;
+
+  my $o = Stuff->new;
+  my $p = Stuff->new;
+
+  # Attach method 'foo' to $o but not $p
+  $o->method("foo", sub { ... });
 
 =head1 DESCRIPTION
 
-Object::Method is
+Object::Method lets you attach methods to methods to object but not
+its classes. There are two different ways to use this module. Keep reading.
+
+The first way is to use it to create a class that allows user to
+attach methods at runtime. To do this, simply put 'use Object::Method' in your
+class body like this:
+
+    package Stuff;
+    use Object::Method;
+
+This effectively exports a C<method> method to your class, which can be used to
+create new methods like this:
+
+    my $o = Stuff->new;
+
+    $o->method("foo" => sub { ... });
+
+The C<method> method takes exactly two arguments: the method name, and
+a sub-routine or code-ref. After calling that C<method> method on
+object C<$o>, a new method C<foo> will be attached to C<$o> and can be
+invoked only on C<$o>.
 
 =head1 AUTHOR
 
