@@ -7,7 +7,7 @@ our $VERSION = '0.01';
 sub import {
     no strict;
     if (@_ > 0) {
-        *{caller . "::method"} = \&method;
+        *{caller() . "::method"} = \&method;
     }
 }
 
