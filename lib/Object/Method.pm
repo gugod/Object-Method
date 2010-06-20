@@ -2,6 +2,9 @@ package Object::Method;
 
 use strict;
 use warnings;
+
+use Scalar::Util ();
+
 our $VERSION = '0.01';
 
 sub import {
@@ -11,16 +14,17 @@ sub import {
     }
 }
 
-my $id = 0;
-
 sub method {
     my ($o, $m, $c) = @_;
 
-    my $p = ref($o);
-    unless ($p =~ /#<\(\d+\)>$/) {
-        $id++;
+    my $p = Scalar::Util::blessed($o);
+    my $id = Scalar::Util::refaddr($o);
+
+    unless ($p =~ /#<(\d+)>$/ and $id == $1) {
         my $op = $p;
-        $p = $op . "#<${id}>";
+
+        $p =~ s/(?:#<\d+>)?$/#<$id>/;
+
         # eval "package $p;";
         bless $o, $p;
         {

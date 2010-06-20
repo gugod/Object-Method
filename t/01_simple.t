@@ -38,4 +38,23 @@ subtest "->method attaches the given method to objects" => sub {
     isnt($o->can("bar"),  $p->can("bar"), "\$o and \$p has different 'bar' method.");
 };
 
+subtest "->cloning is supported" => sub {
+    plan tests => 6;
+
+    $o->method("clone", sub { bless { %{ $_[0] } }, ref $_[0] });
+
+    my $clone = $o->clone;
+
+    isa_ok($clone, "Stuff");
+    can_ok($clone, "bar" );
+
+    $clone->method("blah", sub { "..." });
+
+    can_ok($clone, "blah");
+    ok(!$o->can("blah"));
+
+    isa_ok($clone, "Stuff");
+    can_ok($clone, "bar" );
+};
+
 done_testing;
