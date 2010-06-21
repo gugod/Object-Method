@@ -13,8 +13,9 @@ package main;
 my $o = bless {}, "Stuff";
 my $p = bless {}, "Stuff";
 
-ok($o->can("foo"));
-ok($p->can("foo"));
+can_ok($o, "foo");
+can_ok($p, "foo");
+
 ok(!$o->can("bar"));
 ok(!$p->can("bar"));
 
@@ -23,7 +24,7 @@ subtest "->method attaches the given method to objects" => sub {
 
     $o->method("bar", sub { "..." });
 
-    ok($o->can("bar"));
+    can_ok($o, "bar");
     ok(!$p->can("bar"));
 };
 
@@ -32,10 +33,10 @@ subtest "->method attaches the given method to objects" => sub {
 
     $p->method("bar", sub { "..." });
 
-    ok($o->can("bar"));
-    ok($p->can("bar"));
+    can_ok($o, "bar");
+    can_ok($p, "bar");
 
-    isnt($o->can("bar"),  $p->can("bar"), "\$o and \$p has different 'bar' method.");
+    isnt($o->can("bar"),  $p->can("bar"), "\$o and \$p have different 'bar' method.");
 };
 
 subtest "->cloning is supported" => sub {
