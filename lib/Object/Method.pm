@@ -63,7 +63,7 @@ Object::Method - attach method to objects instead of classes.
 =head1 DESCRIPTION
 
 Object::Method lets you attach methods to methods to object but not
-its classes. There are two different ways to use this module. Keep reading.
+its classes. There are three different ways to use this module. Keep reading.
 
 The first way is to use it to create a class that allows user to
 attach methods at runtime. To do this, simply put 'use Object::Method' in your
@@ -96,6 +96,16 @@ C<UNIVERSAL::Object::Method> like this:
 
 This is an overwhelming way due to the use of L<UNIVERSAL> namespace. If
 you are not familiar with it, read the linked documentation.
+
+The third way is to use it on a class that does not itself use this
+module at all by using C<method> as a function instead of as a method.
+
+    ues Object::Method;
+    use SomeClass;
+    
+    my $o = SomeClass->new;
+    
+    method($o, "foo" => sub { ... });
 
 Please notice that calling the C<method> method multiple times
 obviously override previous definition and there is no way to undo
