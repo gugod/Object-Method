@@ -1,0 +1,12 @@
+language: perl
+perl:
+  - "5.10"
+  - "5.12"
+  - "5.14"
+before_install:
+  - yes | perl -MCPAN::FirstTime -e CPAN::FirstTime::init
+  - cpanm --notest Module::Install Module::Install::AuthorTests Devel::Cover Devel::Cover::Report::Coveralls
+
+script:
+  PERL5OPT=-MDevel::Cover prove -Ilib -r t && cover -report coveralls
+
