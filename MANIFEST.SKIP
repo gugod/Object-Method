@@ -20,3 +20,4 @@
 ^\.shipit$
 ^\.gitignore$
 ^cover_db
+^.travis.yml$
