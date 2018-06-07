@@ -10,7 +10,7 @@ our $VERSION = '0.03';
 sub import {
     no strict;
     if (@_ > 0) {
-        *{caller() . "::method"} = \&method;
+        *{caller() . '::method'} = \&method;
     }
 }
 
@@ -29,7 +29,7 @@ sub method {
         bless $o, $p;
         {
             no strict;
-            @{$p . "::ISA"}=($op);
+            @{$p . '::ISA'}=($op);
         }
     }
 
