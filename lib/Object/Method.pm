@@ -5,7 +5,7 @@ use warnings;
 
 use Scalar::Util ();
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 sub import {
     no strict;
@@ -41,6 +41,7 @@ sub method {
 }
 
 1;
+
 __END__
 
 =head1 NAME
