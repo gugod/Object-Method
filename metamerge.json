@@ -1,3 +1,10 @@
 {
     "x_static_install": true
+    "resources": {
+        "repository": {
+            "web": "https://github.com/gugod/Object-Methd",
+            "url": "https://github.com/gugod/Object-Method.git",
+            "type": "git"
+        }
+    }
 }
