@@ -1,0 +1,57 @@
+{
+   "abstract" : "attach method to objects instead of classes.",
+   "author" : [
+      "Kang-min Liu"
+   ],
+   "dynamic_config" : 0,
+   "generated_by" : "App::ModuleBuildTiny version 0.029",
+   "license" : [
+      "mit"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : 2
+   },
+   "name" : "Object-Method",
+   "prereqs" : {
+      "configure" : {
+         "requires" : {
+            "Module::Build::Tiny" : "0.034"
+         }
+      },
+      "develop" : {
+         "requires" : {
+            "App::ModuleBuildTiny" : "0.029"
+         }
+      },
+      "test" : {
+         "requires" : {
+            "Test::More" : "0"
+         }
+      }
+   },
+   "provides" : {
+      "Object::Method" : {
+         "file" : "lib/Object/Method.pm",
+         "version" : "0.04"
+      },
+      "UNIVERSAL" : {
+         "file" : "lib/UNIVERSAL/Object/Method.pm"
+      },
+      "UNIVERSAL::Object::Method" : {
+         "file" : "lib/UNIVERSAL/Object/Method.pm"
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "repository" : {
+         "type" : "git",
+         "url" : "https://github.com/gugod/Object-Method.git",
+         "web" : "https://github.com/gugod/Object-Methd"
+      }
+   },
+   "version" : "0.04",
+   "x_serialization_backend" : "JSON::PP version 4.04",
+   "x_spdx_expression" : "MIT",
+   "x_static_install" : "1"
+}
